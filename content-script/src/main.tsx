@@ -10,7 +10,6 @@ function init() {
     setTimeout(() => {
       const parentDiv = document.querySelector(
         ".css-175oi2r.r-k4xj1c.r-18u37iz.r-1wtj0ep"
-        
       );
       const parentChild = parentDiv?.children[1] as HTMLDivElement;
       parentChild.style.alignSelf = "flex-end";
@@ -21,15 +20,18 @@ function init() {
 
       parentDiv?.insertBefore(app, parentChild);
 
-      const container  = document.getElementById("root") as HTMLElement;
-      const root = createRoot(container);
+      const container = document.getElementById("root") as HTMLElement;
+      let root = createRoot(container);
+
+      // If root has already been created, use it instead of creating a new one
+      if (!root) {
+        root = createRoot(container);
+      }
       
       root.render(
-        // <ChakraProvider>
-          <React.StrictMode>
-            <App tweetText={tweet.innerText} />
-          </React.StrictMode>
-        // </ChakraProvider>
+        <React.StrictMode>
+          <App tweetText={tweet.innerText} />
+        </React.StrictMode>
       );
     }, 2000);
   }

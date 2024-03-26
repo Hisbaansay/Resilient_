@@ -2,29 +2,22 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 export const factCheckTweet = async (
   tweet: string
 ): Promise<[string, string, string]> => {
-  const messages = [
-    {
-      role: "system",
-      content:
-        "You are a fact-checking assistant. Please fact-check the following messages to the best of your ability. Please keep your response to 40 words. Can you please categorize the tweet into one of two categories: true, false. Please ensure that the first word of your response is one of the categories, followed by a space, and then your reasoning.",
-    },
-    { role: "user", content: tweet },
-  ];
+ 
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+  const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyC4Kgb01DwMA3pJDdOUDtQ-6oQesTCNvnc", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_OPENAI_KEY}`,
     },
     body: JSON.stringify({
-      model: "gpt-3.5-turbo",
-      messages,
+      "contents":[{"parts":[{"text":"You are a fact-checking assistant. Please fact-check the following messages to the best of your ability. Please keep your response to 40 words. Can you please categorize the tweet into one of two categories: true, false. Please ensure that the first word of your response is one of the categories, followed by a space, and then your reasoning."+tweet   }]}]
+      
     }),
+
   });
 
   const data = await res.json();
-  const openaiResponse = data.choices[0].message.content;
+  const openaiResponse = data.candidates[0].content.parts[0].text;
   const category = getFirstWord(openaiResponse).toLowerCase();
   const subcategory = getSecondWord(openaiResponse).toLowerCase();
 
@@ -35,29 +28,23 @@ export const factCheckTweet = async (
 export const disCheckTweet = async (
   tweet: string
 ): Promise<[string]> => {
-  const messages = [
-    {
-      role: "system",
-      content:
-        "You are a fact-checking assistant. Please fact-check the following messages to the best of your ability. Please keep your response to 1 word. Can you please categorize the tweet into one of two categories: disastrous, non-disastrous with respect to the perspective of environment it should mainly categorize as  natural and manmade disaster-related tweets and other tweets.",
-    },
-    { role: "user", content: tweet },
-  ];
+  
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+  const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyC4Kgb01DwMA3pJDdOUDtQ-6oQesTCNvnc", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_OPENAI_KEY}`,
     },
     body: JSON.stringify({
-      model: "gpt-3.5-turbo",
-      messages,
+      "contents":[{"parts":[{"text":"You are a fact-checking assistant. Please fact-check the following messages to the best of your ability. Please keep your response to 1 word. Can you please categorize the tweet into one of two categories: disastrous, non-disastrous with respect to the perspective of environment it should mainly categorize as  natural and manmade disaster-related tweets and other tweets."+tweet   }]}]
+      
     }),
+
   });
 
   const data = await res.json();
-  const openaiResponse = data.choices[0].message.content;
+
+  const openaiResponse = data.candidates[0].content.parts[0].text;
   const discategory = getFirstWord(openaiResponse).toLowerCase();
 
   
@@ -67,29 +54,23 @@ export const disCheckTweet = async (
 export const infoCheckTweet = async (
   tweet: string
 ): Promise<[string]> => {
-  const messages = [
-    {
-      role: "system",
-      content:
-        "You are a fact-checking assistant. Please fact-check the following messages to the best of your ability. Please keep your response to 1 word. Can you please categorize the tweet into one of two categories: informative (for actual disaster-related tweets),non-informative (for metaphorical disaster-related tweets).",
-    },
-    { role: "user", content: tweet },
-  ];
+  
 
-  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+  const res = await fetch("https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyC4Kgb01DwMA3pJDdOUDtQ-6oQesTCNvnc", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_OPENAI_KEY}`,
     },
     body: JSON.stringify({
-      model: "gpt-3.5-turbo",
-      messages,
+      "contents":[{"parts":[{"text":"You are a fact-checking assistant. Please fact-check the following messages to the best of your ability. Please keep your response to 1 word. Can you please categorize the tweet into one of two categories: informative (for actual disaster-related tweets),non-informative (for metaphorical disaster-related tweets)."+tweet   }]}]
+      
     }),
+
   });
 
   const data = await res.json();
-  const openaiResponse = data.choices[0].message.content;
+ 
+  const openaiResponse = data.candidates[0].content.parts[0].text;
   const infostatus = getFirstWord(openaiResponse).toLowerCase();
 
   
