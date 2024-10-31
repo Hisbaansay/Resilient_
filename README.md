@@ -2,7 +2,7 @@
 Fact-Check tweets instantly with Resilient
 
 ## Introduction
-Resilient is a chrome extension that allows users to fact-check tweets in real-time. The extension has an easy-to-use interface. A fact-check button is rendered when a user interacts with a tweet, and clicking the button fact-checks the tweet content using the <strong>OpenAI Gemini API.</strong>
+Resilient is a chrome extension that allows users to fact-check tweets in real-time. The extension has an easy-to-use interface. A fact-check button is rendered when a user interacts with a tweet, and clicking the button fact-checks the tweet content using the <strong>Gemini API.</strong>
 
 ## Tech Stack
 - React (Vite)
