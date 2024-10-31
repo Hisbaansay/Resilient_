@@ -7,9 +7,8 @@ Resilient is a chrome extension that allows users to fact-check tweets in real-t
 ## Tech Stack
 - React (Vite)
 - Chrome Extension Tools
-- GPT 3.5
+- Gemini
 - TypeScript
-- Chakra UI
 
 ## Features
 The tool categorizes the tweet into 1 of three categories
